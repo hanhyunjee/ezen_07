@@ -98,6 +98,7 @@ input, textarea {
     <h1>새글 쓰기</h1>
     <form class="form_bg" name="articleForm" method="post"   action="${contextPath}/board/addArticle.do"   enctype="multipart/form-data">
       <table class="table">
+      	<tbody style="margin: 0 auto;">
         <tr>
           <td>글제목</td>
           <td colspan="2"><input class="flex" type="text" size="67"  maxlength="500" name="title" /></td>
@@ -118,6 +119,7 @@ input, textarea {
               <input class="btn" type=button value="목록보기"onClick="backToList(this.form)" />
           </td>
         </tr>
+        </tbody>
       </table>
     </form>
   </div> 

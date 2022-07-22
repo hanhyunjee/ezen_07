@@ -64,7 +64,7 @@
    }
    tr {
      border-bottom: 1px solid #f8f8f8;
-     line-height: 1.6;
+     line-height: 2;
     }
     tr:last-of-type {
      border-bottom: 3px solid #f8f8f8;
@@ -76,13 +76,15 @@
     border-bottom: 3px solid #f8f8f8;
    }
    .sel-page{color:red;}
-   .next {
+   .next, .pre {
      color: #337ab7;
      transition: .3s;
    }
-   .next:hover {
+   .cls2 .next:hover,
+   .cls2 .pre:hover {
      color: #1f6dff;
      font-size: 1.3rem;
+     text-decoration: none;
    }
    .cls2{
      text-align:center;
@@ -93,6 +95,13 @@
    
    table .title_style {
    	 text-align: left;
+   }
+   .cls2 a{
+   	margin: .2rem;
+   }
+   .cls2 a:hover {
+    color: #1f6dff;
+    text-decoration: underline;
    }
   </style>
   <meta charset="UTF-8">
@@ -154,9 +163,9 @@
         <c:when test="${totArticles >100 }">  <!-- 글 개수가 100 초과인경우 -->
          <c:forEach   var="page" begin="1" end="10" step="1" >
             <c:if test="${section >1 && page==1 }">
-             <a  class="next" href="${contextPath }/board/listArticles.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; pre &#60;&#60; </a>
+             <a  class="pre" href="${contextPath }/board/listArticles.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; pre &#60;&#60; </a>
             </c:if>
-             <a  href="${contextPath }/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
+             <a  href="${contextPath }/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }</a>
             <c:if test="${page ==10 }">
              <a class="next" href="${contextPath }/board/listArticles.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; >> next</a>
             </c:if>

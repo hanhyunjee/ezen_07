@@ -102,15 +102,15 @@
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ol>
-					<div class="carousel-inner">
+					<div width class="carousel-inner">
 						<div class="item active">
-							<img src="images/1.jpg">
+							<img src="images/ddd.png">
 						</div>
 						<div class="item">
-							<img src="images/2.jpg">
+							<img src="images/fff.png">
 						</div>
 						<div class="item">
-							<img src="images/3.jpg">
+							<img src="images/ggg.png">
 						</div>
 					</div>
 					<a class="left carousel-control" href="#myCarousel"
