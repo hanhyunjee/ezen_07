@@ -23,7 +23,7 @@ public class BoardDAO {
 		try {
 			Context ctx = new InitialContext();
 			Context envContext = (Context) ctx.lookup("java:/comp/env");
-			dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+			dataFactory = (DataSource) envContext.lookup("jdbc/oracle");		// Oracle 연동
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class BoardDAO {
 							   +" CONNECT BY PRIOR articleNO = parentNO"
 							  +"  ORDER SIBLINGS BY articleNO DESC)"
 					+") "                        
-					+" where recNum between(?-1)*100+(?-1)*10+1 and (?-1)*100+?*10";                
+					+" where recNum between(?-1)*100+(?-1)*10+1 and (?-1)*100+?*10";         // 계층형으로 조회     
 		   System.out.println(query);
 		   pstmt= conn.prepareStatement(query);
 		   pstmt.setInt(1, section);
@@ -62,8 +62,8 @@ public class BoardDAO {
 		   pstmt.setInt(4, pageNum);
 		   ResultSet rs =pstmt.executeQuery();
 		   while(rs.next()){
-		      int level = rs.getInt("lvl");
-		      int articleNO = rs.getInt("articleNO");
+		      int level = rs.getInt("level");  // 각 글의 깊이(계층)를 level속성에 저장	
+		      int articleNO = rs.getInt("articleNO");	// 글 번호
 		      int parentNO = rs.getInt("parentNO");
 		      String title = rs.getString("title");
 		      String id = rs.getString("id");
@@ -127,12 +127,12 @@ public class BoardDAO {
 	private int getNewArticleNO() {
 		try {
 			conn = dataFactory.getConnection();
-			String query = "SELECT  max(articleNO) from t_board ";
+			String query = "SELECT  max(articleNO) from t_board ";	// 기본 글 번호중 가장 큰 번호를 조회
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery(query);
-			if (rs.next())
-				return (rs.getInt(1) + 1);
+			if (rs.next())	
+				return (rs.getInt(1) + 1);  // 가장 큰 번호에 1을 더한 번호를 반환
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -143,7 +143,7 @@ public class BoardDAO {
 	}
 
 	public int insertNewArticle(ArticleVO article) {
-		int articleNO = getNewArticleNO();
+		int articleNO = getNewArticleNO();	// 새 글을 추가하기 전에 새 글에 대한 글번호를 가져옴
 		try {
 			conn = dataFactory.getConnection();
 			int parentNO = article.getParentNO();
@@ -152,7 +152,7 @@ public class BoardDAO {
 			String id = article.getId();
 			String imageFileName = article.getImageFileName();
 			String query = "INSERT INTO t_board (articleNO, parentNO, title, content, imageFileName, id)"
-					+ " VALUES (?, ? ,?, ?, ?, ?)";
+					+ " VALUES (?, ? ,?, ?, ?, ?)";	// insert문을 이용해 글정보 추가
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, articleNO);

@@ -138,7 +138,7 @@
    <td class="title_style" width="35%">
        <span style="padding-right:30px"></span>    
       <c:choose>
-         <c:when test='${article.level > 1 }'>  
+         <c:when test='${article.level > 1 }'>  <!-- level값이 1보다 큰 경우는 자식글이되므로 level값 만큼 부모 글 밑에 공백으로 들여쓰기를 함 -->
             <c:forEach begin="1" end="${article.level }" step="1">
                 <span style="padding-left:10px"></span> 
             </c:forEach>
@@ -166,8 +166,8 @@
              <a  class="pre" href="${contextPath }/board/listArticles.do?section=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; pre &#60;&#60; </a>
             </c:if>
              <a  href="${contextPath }/board/listArticles.do?section=${section}&pageNum=${page}">${(section-1)*10 +page }</a>
-            <c:if test="${page ==10 }">
-             <a class="next" href="${contextPath }/board/listArticles.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; >> next</a>
+            <c:if test="${page ==10 }">	<!-- 첫 페이지에 페이지를 10개만 보여줌  -->
+             <a class="next" href="${contextPath }/board/listArticles.do?section=${section+1}&pageNum=${section*10+1}">&nbsp; >> next</a>	<!-- 그 다음장부터는 session*10+1값으로 페이지수가 증가 -->
             </c:if>
          </c:forEach>
         </c:when>
@@ -193,7 +193,7 @@
     </c:if>
 </div>    
 <br><br>
-<a  class="submit_btn" href="${contextPath}/board/articleForm.do">글쓰기</a><br>
+<a  class="submit_btn" href="${contextPath}/board/articleForm.do">글쓰기</a><br>	<!-- 글쓰기를 클릭하면 글쓰기창으로 이동 -->
 </div> 
 </body>
 </html>

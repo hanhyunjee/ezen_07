@@ -44,8 +44,8 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="main.jsp">메인</a></li>
-					<li><a href="${contextPath}/pro17p/board/listArticles.do">게시판</a></li>
-				</ul>
+					<li><a href="${contextPath}/pro17p/board/listArticles.do">게시판</a></li>		<!-- 게시판을 누르면 listArticles.do로 이동해서 게시판이 보임 -->
+				</ul>	
 
 				<%
 					
@@ -58,8 +58,8 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">접속하기<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="login.jsp">로그인</a></li>
-							<li><a href="join.jsp">회원가입</a></li>
+							<li><a href="login.jsp">로그인</a></li>		<!-- 로그인을 누르면 login.jsp로 이동 -->
+							<li><a href="join.jsp">회원가입</a></li>		<!-- 회원가입을 누르면 join.jsp로 이동 -->
 						</ul></li>
 				</ul>
 
@@ -73,7 +73,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">회원관리<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="logoutAction.jsp">로그아웃</a></li>
+							<li><a href="logoutAction.jsp">로그아웃</a></li>	<!-- 로그아웃을 누르면 logoutAction.jsp로 이동 -->
 
 						</ul></li>
 				</ul>
@@ -91,7 +91,7 @@
 					본 게시판은 한숨[,]처럼 쉬었다 머물어 갈 수 있는 여행지정보 게시판입니다.<br>
 					여러분들의 소중한 하나가 도움이 됩니다<br> 회원가입
 					후 로그인을 하셔서 게시판 메뉴로 들어가신 후 글 작성을 하시면 됩니다!
-				</p>
+				</p>		<!-- 메인에 보이는 글 -->
 
 			</div>
 
@@ -104,7 +104,7 @@
 					</ol>
 					<div width class="carousel-inner">
 						<div class="item active">
-							<img src="images/ddd.png">
+							<img src="images/ddd.png">		<!-- 메인에 있는 사진들 -->
 						</div>
 						<div class="item">
 							<img src="images/fff.png">
@@ -119,7 +119,7 @@
 					</a> <a class="right carousel-control" href="#myCarousel"
 						data-slide="next"> <span
 						class="glyphicon glyphicon-chevron-right"></span>
-					</a>
+					</a>			<!-- 사진 양쪽에 버튼을 만들어서 누르면 사진을 전, 후로 이동가능  -->
 
 				</div>
 

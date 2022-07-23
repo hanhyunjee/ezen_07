@@ -28,7 +28,7 @@ import org.apache.commons.io.FileUtils;
  */
 @WebServlet("/board/*")
 public class BoardController extends HttpServlet {
-	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
+	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";		// 게시판에 글을 쓸 때 사진을 첨부하게 되면 C드라이브에 저장이 되도록 함
 	BoardService boardService;
 	ArticleVO articleVO;
 
@@ -77,7 +77,7 @@ public class BoardController extends HttpServlet {
 				articlesMap.put("section", section);
 				articlesMap.put("pageNum", pageNum);
 				request.setAttribute("articlesMap", articlesMap);
-				nextPage = "/board07/ listArticles.jsp";
+				nextPage = "/board07/ listArticles.jsp";		// 전체 글 조회
 				}else if(action.equals("/listArticles.do")){  			
 				String _section=request.getParameter("section");
 				String _pageNum=request.getParameter("pageNum");
@@ -91,17 +91,17 @@ public class BoardController extends HttpServlet {
 				articlesMap.put("pageNum", pageNum);
 				request.setAttribute("articlesMap", articlesMap);
 				nextPage = "/board07/listArticles.jsp";
-			} else if (action.equals("/articleForm.do")) {
+			} else if (action.equals("/articleForm.do")) {	// 글쓰기 창
 				nextPage = "/board07/articleForm.jsp";
-			} else if (action.equals("/addArticle.do")) {
+			} else if (action.equals("/addArticle.do")) {	// 새 글 추가작업 수행
 				int articleNO = 0;
-				Map<String, String> articleMap = upload(request, response);
+				Map<String, String> articleMap = upload(request, response);	// 파일 업로드 기능을 사용하기 위해 upload()로 요청을 전달
 				String title = articleMap.get("title");
 				String content = articleMap.get("content");
 				String imageFileName = articleMap.get("imageFileName");
 
-				articleVO.setParentNO(0);
-				articleVO.setId("hong");
+				articleVO.setParentNO(0);	// 새 글 부모 글번호를 0으로 설정
+				articleVO.setId("hong");	// 새 글 작성자 ID를 hong으로 설정
 				articleVO.setTitle(title);
 				articleVO.setContent(content);
 				articleVO.setImageFileName(imageFileName);
@@ -219,9 +219,9 @@ public class BoardController extends HttpServlet {
 					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
 					articleMap.put(fileItem.getFieldName(), fileItem.getString(encoding));
 				} else {
-					System.out.println("파라미터명:" + fileItem.getFieldName());
+					System.out.println("파라미터명:" + fileItem.getFieldName());		// 게시글이 업로드 되면 console창에 파일명이 뜨도록 함
 					//System.out.println("파일명:" + fileItem.getName());
-					System.out.println("파일크기:" + fileItem.getSize() + "bytes");
+					System.out.println("파일크기:" + fileItem.getSize() + "bytes");	// 게시글이 업로드 되면 console창에 파일크기가 뜨도록 함
 					//articleMap.put(fileItem.getFieldName(), fileItem.getName());
 					if (fileItem.getSize() > 0) {
 						int idx = fileItem.getName().lastIndexOf("\\");
@@ -231,9 +231,9 @@ public class BoardController extends HttpServlet {
 
 						String fileName = fileItem.getName().substring(idx + 1);
 						System.out.println("파일명:" + fileName);
-								articleMap.put(fileItem.getFieldName(), fileName);  //익스플로러에서 업로드 파일의 경로 제거 후 map에 파일명 저장);
+								articleMap.put(fileItem.getFieldName(), fileName);  //익스플로러에서 업로드 파일의 경로 제거 후 map에 파일명 저장;
 						File uploadFile = new File(currentDirPath + "\\temp\\" + fileName);
-						fileItem.write(uploadFile);
+						fileItem.write(uploadFile);		// 업로드한 파일의 이름으로 저장소에 업로드
 
 					} // end if
 				} // end if

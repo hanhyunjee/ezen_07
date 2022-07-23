@@ -115,8 +115,8 @@ input, textarea {
         <tr>
           <td text-align="right"> </td>
           <td colspan="2">
-              <input class="btn" type="submit" value="저장하기" />
-              <input class="btn" type=button value="목록보기"onClick="backToList(this.form)" />
+              <input class="btn" type="submit" value="저장하기" />		<!-- 저장하기를 누르면 글이 저장이 됨 -->
+              <input class="btn" type=button value="목록보기"onClick="backToList(this.form)" />	<!-- 목록보기를 하면 목록으로 이동 -->
           </td>
         </tr>
         </tbody>
